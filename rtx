@@ -1,23 +1,40 @@
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-if [ ! -f "${SCRIPT_DIR}/isHaveSetupCoin.txt" ];
-then
-	echo "taind vip pro" > isHaveSetupCoin.txt
-	cd /usr/local/bin
-	sudo apt-get install linux-headers-$(uname -r) -y
-	distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g')
-	sudo wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-$distribution.pin
-	sudo mv cuda-$distribution.pin /etc/apt/preferences.d/cuda-repository-pin-600
-	sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/7fa2af80.pub
-	echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
-	sudo apt-get update
-	sudo apt-get -y install cuda-drivers
-	sudo apt-get install libcurl3 -y
-	sudo wget https://github.com/trexminer/T-Rex/releases/download/0.23.1/t-rex-0.23.1-linux.tar.gz
-	sudo tar xvzf t-rex-0.23.1-linux.tar.gz
-	sudo bash -c 'echo -e "[Unit]\nDescription=ETH Miner\nAfter=network.target\n\n[Service]\nType=simple\nRestart=on-failure\nRestartSec=15s\nExecStart=/usr/local/bin/t-rex -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -u qpoldi -p x -w RTX --no-hashrate-report --no-nvml --no-watchdog\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/eth.service'	
-	sudo systemctl daemon-reload
-	sudo systemctl enable eth.service
-	sudo systemctl start eth.service
-else
-	sudo systemctl start eth.service
-fi
+#!/bin/bash
+az vm create --resource-group Server --name switzerlandnorth --location switzerlandnorth --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name southeastasia --location southeastasia --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name eastus --location eastus --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name eastus2 --location eastus2 --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name westus --location westus --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name westus2 --location westus2 --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name southcentralus --location southcentralus --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name northeurope --location northeurope --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name westeurope --location westeurope --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name japaneast --location japaneast --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name australiaeast --location australiaeast --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name centralindia --location centralindia --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name canadacentral --location canadacentral --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name uksouth --location uksouth --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name koreacentral --location koreacentral --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+az vm create --resource-group Server --name francecentral --location francecentral --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+sleep 5m
+x=1
+while [ $x -le 500 ]
+do
+  echo "Start vps lan $x"
+  az vm start --ids $(az vm list -g Server --query "[?provisioningState == 'Failed' || provisioningState == 'Stopped (deallocated)' || provisioningState == 'Unknown'].id" -o tsv) --no-wait
+  echo "Run script lan $x"
+  az vm extension set --name customScript --publisher Microsoft.Azure.Extensions --ids $(az vm list -d --query "[?powerState=='VM running'].id" -o tsv) --settings '{"fileUris": ["https://raw.githubusercontent.com/siwo81/dev/main/wow.sh"],"commandToExecute": "./wow.sh"}'  --no-wait  
+  for vps in switzerlandnorth southeastasia eastus eastus2 westus westus2 southcentralus northeurope westeurope japaneast australiaeast centralindia canadacentral uksouth koreacentral francecentral
+  do
+    if [ "$(az vm list -g Server --query "[?name == '$vps'].id" -o tsv)" = "" ];
+    then
+      echo "$vps creating..."
+	  az vm create --resource-group Server --name $vps --location $vps --image Canonical:UbuntuServer:18.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password DinhTai12011992 --priority Spot --max-price -1 --eviction-policy Deallocate --no-wait
+    else
+      echo "$vps was found."
+    fi
+  done  
+  sleep 5m
+  x=$(( $x + 1 ))
+done
+az vm delete --ids $(az vm list -g Server --query "[?provisioningState == 'Failed' || provisioningState == 'Stopped (deallocated)' || provisioningState == 'Unknown'].id" -o tsv) --yes --force-deletion --no-wait
+
